@@ -1,0 +1,22 @@
+name: Initial Workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Project A
+        run: echo "Building Project A"
+
+      - name: Trigger Repository B Workflow
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: ManiVaultStudio/BinIO
+          event-type: repository-a-completed
+          client-payload: '{"ref": "feature/core_1.0/0.5"}'

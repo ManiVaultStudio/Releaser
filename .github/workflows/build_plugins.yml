@@ -1,8 +1,9 @@
 name: Build plugins
 
 on:
-  repository_dispatch:
-    types: [core-completed]
+  workflow_dispatch
+  #repository_dispatch:
+  #  types: [core-completed]
 
 jobs:
   job1:

@@ -15,7 +15,7 @@ jobs:
         run: echo "Building core"
 
 
-  dispatch:
+  build-plugins:
     needs: build-core
     strategy:
         matrix:
@@ -24,7 +24,14 @@ jobs:
     steps:
       - name: Echo
         run: echo Building ${{ matrix.repo }}
-          
+
+  build-installer:
+    needs: build-plugins
+    runs-on: windows-latest
+    steps:
+      - name: Echo
+        run: echo Building installer
+        
 #name: Build core
 
 #on:

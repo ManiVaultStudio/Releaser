@@ -11,6 +11,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Trigger workflow in core
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GH_API_TOKEN }}
+          repository: ManiVaultStudio/core
+          event-type: core-completed
+          client-payload: '{"ref": "release/1.0"}'
+          
   build-plugins:
     name: Build plugins
     runs-on: windows-latest

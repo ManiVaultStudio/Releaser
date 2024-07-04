@@ -4,15 +4,27 @@ on:
   workflow_dispatch
 
 jobs:
-  job_a:
-    runs-on: ubuntu-latest
+  build-core:
+    name: Build core
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run tasks in Workflow A
-        run: echo "This is Workflow A"
-        
+      - name: Echo
+        run: echo "Building core"
+
+
+  dispatch:
+    needs: build-core
+    strategy:
+        matrix:
+          repo: ['ManiVaultStudio/BinIO', 'ManiVaultStudio/MeanShiftClustering']
+    runs-on: windows-latest
+    steps:
+      - name: Echo
+        run: echo Building ${{ matrix.repo }}
+          
 #name: Build core
 
 #on:

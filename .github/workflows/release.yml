@@ -1,0 +1,14 @@
+name: Build release repos
+
+on:
+  workflow_dispatch
+    
+jobs:
+  build-release-repos:
+    name: Windows release build
+    runs-on: windows-latest
+    steps:
+      - name: Use composite action
+        uses: ./.github/actions/composite-action
+        with:
+          example_input: "Some input value"

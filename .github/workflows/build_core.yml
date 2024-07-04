@@ -1,1 +1,17 @@
-client-payload: '{"ref": "release/1.0"}'
+name: Build core
+
+on:
+  workflow_dispatch
+    
+jobs:
+  build-core:
+    name: Build core
+    runs-on: windows-latest
+    steps:
+      - name: Trigger workflow in core
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PA_TOKEN }}
+          repository: ManiVaultStudio/core
+          event-type: core-completed
+          client-payload: '{"ref": "release/1.0"}'

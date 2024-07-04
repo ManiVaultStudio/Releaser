@@ -1,7 +1,12 @@
 name: Release
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch to trigger the workflow on'
+        required: true
+        default: 'main'
 
 jobs:
   build-core:
@@ -22,8 +27,51 @@ jobs:
           repo: ['ManiVaultStudio/BinIO', 'ManiVaultStudio/MeanShiftClustering']
     runs-on: windows-latest
     steps:
-      - name: Echo
-        run: echo Building ${{ matrix.repo }}
+      - name: Trigger plugin build workflow
+        id: trigger_workflow
+        run: |
+          TOKEN="${{ secrets.PA_TOKEN }}"
+          REPO="${{ matrix.repo }}"
+          REF="${{ github.event.inputs.ref }}"
+          
+          RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/$REPO/actions/workflows/dependent-workflow.yml/dispatches \
+            -d "{\"ref\":\"$REF\"}")
+
+          echo "Triggered workflow for building the core"
+      - name: Wait for plugin build workflow to complete
+        id: wait_workflow
+        run: |
+          TOKEN="${{ secrets.PA_TOKEN }}"
+          REPO="${{ matrix.repo }}"
+          RUN_ID=""
+          STATUS=""
+
+          while [ -z "$RUN_ID" ]; do
+            RUN_ID=$(curl -s -H "Authorization: token $TOKEN" \
+              "https://api.github.com/repos/$REPO/actions/runs?branch=${{ github.event.inputs.ref }}" \
+              | jq -r '.workflow_runs | map(select(.status == "in_progress")) | .[0].id')
+            sleep 5
+          done
+
+          while [ "$STATUS" != "completed" ]; do
+            STATUS=$(curl -s -H "Authorization: token $TOKEN" \
+              "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+              | jq -r '.status')
+            echo "Current status: $STATUS"
+            if [ "$STATUS" == "completed" ]; then
+              CONCLUSION=$(curl -s -H "Authorization: token $TOKEN" \
+                "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+                | jq -r '.conclusion')
+              echo "Workflow completed with conclusion: $CONCLUSION"
+              if [ "$CONCLUSION" != "success" ]; then
+                exit 1
+              fi
+              break
+            fi
+            sleep 10
+          done
 
   build-installer:
     needs: build-plugins

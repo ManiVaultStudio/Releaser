@@ -51,31 +51,31 @@ jobs:
           RUN_ID=""
           STATUS=""
 
-          while [ -z "$RUN_ID" ]; do
+          while [ "$STATUS" != "completed" ]; do
             RUN_ID=$(curl -s -H "Authorization: token $TOKEN" \
               "https://api.github.com/repos/$REPO/actions/runs?branch=${{ github.event.inputs.ref }}" \
               | jq -r '.workflow_runs | map(select(.status == "in_progress")) | .[0].id')
-            sleep 5
-          done
 
-          echo "Run ID: $RUN_ID"
-          
-          while [ "$STATUS" != "completed" ]; do
-            STATUS=$(curl -s -H "Authorization: token $TOKEN" \
-              "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
-              | jq -r '.status')
-            echo "Current status: $STATUS"
-            if [ "$STATUS" == "completed" ]; then
-              CONCLUSION=$(curl -s -H "Authorization: token $TOKEN" \
+            if [ -n "$RUN_ID" ]; then
+              STATUS=$(curl -s -H "Authorization: token $TOKEN" \
                 "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
-                | jq -r '.conclusion')
-              echo "Workflow completed with conclusion: $CONCLUSION"
-              if [ "$CONCLUSION" != "success" ]; then
-                exit 1
+                | jq -r '.status')
+              echo "Current status: $STATUS"
+
+              if [ "$STATUS" == "completed" ]; then
+                CONCLUSION=$(curl -s -H "Authorization: token $TOKEN" \
+                  "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+                  | jq -r '.conclusion')
+                echo "Workflow completed with conclusion: $CONCLUSION"
+                if [ "$CONCLUSION" != "success" ]; then
+                  exit 1
+                fi
+                break
               fi
-              break
+            else
+              echo "Workflow has not started yet. Waiting..."
             fi
-            sleep 5
+            sleep 10
           done
 
   build-installer:

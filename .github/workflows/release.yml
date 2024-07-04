@@ -8,6 +8,9 @@ jobs:
     name: Windows release build
     runs-on: windows-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Use composite action
         uses: ./.github/actions/composite-action
         with:

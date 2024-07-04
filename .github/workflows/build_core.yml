@@ -24,7 +24,7 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          repo: ['ManiVaultStudio/BinIO', 'ManiVaultStudio/MeanShiftClustering']
+          repo: ['ManiVaultStudio/BinIO']
     runs-on: windows-latest
     steps:
       - name: Trigger plugin build workflow
@@ -40,7 +40,7 @@ jobs:
             https://api.github.com/repos/$REPO/actions/workflows/build.yml/dispatches \
             -d "{\"ref\":\"$REF\"}")
 
-          echo "Triggered workflow for building the core"
+          echo "Triggered workflow for building the core: $RESPONSE"
       - name: Wait for plugin build workflow to complete
         id: wait_workflow
         shell: bash

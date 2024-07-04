@@ -1,0 +1,22 @@
+name: "Composite Action"
+
+description: "A composite action that runs external actions"
+
+inputs:
+  example_input:
+    description: "An example input"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Run a script
+      run: echo "Hello from the composite action, with input ${{ inputs.example_input }}"
+
+    - name: Run an external action
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'

@@ -41,6 +41,7 @@ jobs:
             -d "{\"ref\":\"$REF\"}")
 
           echo "Triggered workflow for building the core: $RESPONSE"
+          
       - name: Wait for plugin build workflow to complete
         id: wait_workflow
         shell: bash
@@ -57,6 +58,8 @@ jobs:
             sleep 5
           done
 
+          echo "Run ID: $RUN_ID"
+          
           while [ "$STATUS" != "completed" ]; do
             STATUS=$(curl -s -H "Authorization: token $TOKEN" \
               "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \

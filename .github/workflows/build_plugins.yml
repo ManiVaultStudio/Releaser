@@ -1,16 +1,27 @@
-name: Build plugins
+name: Workflow B
 
 on:
-  workflow_dispatch
-  #repository_dispatch:
-  #  types: [core-completed]
+  workflow_run:
+    workflows: ["Workflow A"]
+    types:
+      - completed
 
 jobs:
-  job1:
-    runs-on: windows-latest
+  job_b:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Echo test
-        run: echo "Core is completed, now going to build the plugins"
+      - name: Run tasks in Workflow B
+        run: echo "This is Workflow B, triggered by completion of Workflow A"
+
+#jobs:
+#  job1:
+#    runs-on: windows-latest
+##    steps:
+ #     - name: Checkout code
+ #       uses: actions/checkout@v2#
+
+     # - name: Echo test
+     #   run: echo "Core is completed, now going to build the plugins"

@@ -29,6 +29,7 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         id: trigger_workflow
+        shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
           REPO="${{ matrix.repo }}"
@@ -42,6 +43,7 @@ jobs:
           echo "Triggered workflow for building the core"
       - name: Wait for plugin build workflow to complete
         id: wait_workflow
+        shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
           REPO="${{ matrix.repo }}"

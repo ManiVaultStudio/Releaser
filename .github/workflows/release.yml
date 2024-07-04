@@ -14,7 +14,7 @@ jobs:
       - name: Trigger workflow in core
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GH_API_TOKEN }}
+          token: ${{ secrets.PA_TOKEN }}
           repository: ManiVaultStudio/core
           event-type: core-completed
           client-payload: '{"ref": "release/1.0"}'
@@ -23,7 +23,16 @@ jobs:
     name: Build plugins
     runs-on: windows-latest
     needs: build-core
+    strategy:
+      matrix:
+        repo: ['ManiVaultStudio/ImageLoaderPlugin', 'ManiVaultStudio/ImageViewerPlugin', 'ManiVaultStudio/ScatterPlotPlugin']
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PA_TOKEN }}
+          repository: ${{ matrix.repo }}
+          event-type: my-event
+          client-payload: '{"ref": "release/core_1.0"}'
+
       

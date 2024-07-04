@@ -4,14 +4,18 @@ on:
   workflow_dispatch
     
 jobs:
-  build-release-repos:
-    name: Windows release build
+  build-core:
+    name: Build core
     runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Use composite action
-        uses: ./.github/actions/composite-action
-        with:
-          example_input: "Some input value"
+
+  build-plugins:
+    name: Build plugins
+    runs-on: windows-latest
+    needs: build-core
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      

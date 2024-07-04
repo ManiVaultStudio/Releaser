@@ -14,4 +14,10 @@ jobs:
           token: ${{ secrets.PA_TOKEN }}
           repository: ManiVaultStudio/core
           event-type: core-completed
-          client-payload: '{"ref": "release/1.0"}'
+          client-payload: |-
+            {
+              "repo": {
+                "name": "ManiVaultStudio/core",
+                "branch": "release/1.0"
+              }
+            }

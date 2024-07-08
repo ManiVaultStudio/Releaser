@@ -21,6 +21,7 @@ jobs:
   build-plugins:
     runs-on: ubuntu-latest
     needs: build-core
+    name: OS ${{ steps.parse_json.outputs.repo }}
     strategy:
         matrix:
           inputs:

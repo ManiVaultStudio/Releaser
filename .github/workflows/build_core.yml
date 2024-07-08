@@ -6,8 +6,8 @@ on:
       ref:
         description: 'Branch to trigger the workflow on'
         required: true
-        default: 'release/core_1.0/0.5'
-
+        default: 'all'
+        type: string
 jobs:
   build-core:
     name: Build core

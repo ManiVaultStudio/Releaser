@@ -44,8 +44,8 @@ jobs:
           branch: "release/core_1.0/0.5"#$branch
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/$repo
-          ref: $branch
+          repo: ManiVaultStudio/${repo}
+          ref: ${branch}
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

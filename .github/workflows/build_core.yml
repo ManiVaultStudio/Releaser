@@ -24,16 +24,25 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          repo: [{ "name": 'BinIO', "branch": "release/core_1.0/0.5" }]
+          repo:
+            - '{ "repo": "BinIO", "branch", "release/core_1.0/0.5" }'
     runs-on: windows-latest
     steps:
+      - name: Parse JSON
+        id: parse_json
+        run: |
+          combination='${{ matrix.repo }}'
+          value1=$(echo $combination | jq -r '.value1')
+          value2=$(echo $combination | jq -r '.value2')
+          echo "repo=$repo" >> $GITHUB_ENV
+          echo "branch=$branch" >> $GITHUB_ENV
       - name: Trigger plugin build workflow
         id: trigger_workflow
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo.name }}"
-          REF="${{ matrix.repo.branch }}"
+          REPO="${{ $repo }}"
+          REF="${{ $branch }}"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
@@ -47,7 +56,7 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo.name }}"
+          REPO="${{ $repo }}"
           RUN_ID=""
           STATUS=""
 

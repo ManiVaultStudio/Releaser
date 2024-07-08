@@ -32,8 +32,8 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo[0] }}"
-          REF="${{ matrix.repo[1] }}"
+          REPO="${{ matrix.repo.name }}"
+          REF="${{ matrix.repo.branch }}"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
@@ -47,7 +47,7 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo[0] }}"
+          REPO="${{ matrix.repo.name }}"
           RUN_ID=""
           STATUS=""
 

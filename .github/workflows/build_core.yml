@@ -40,8 +40,8 @@ jobs:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
         env:
-          repo: $repo
-          branch: $branch
+          repo: "BinIO"#$repo
+          branch: "release/core_1.0/0.5"#$branch
         with:
           workflow: build.yml
           repo: ManiVaultStudio/$repo

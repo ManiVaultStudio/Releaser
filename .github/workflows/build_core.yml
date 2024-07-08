@@ -57,7 +57,7 @@ jobs:
           STATUS=""
           while [ "$STATUS" != "completed" ]; do
             RUN_ID=$(curl -s -H "Authorization: token $TOKEN" \
-              "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs?branch=${{ github.event.inputs.ref }}" \
+              "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs?branch=$branch" \
               | jq -r '.workflow_runs | map(select(.status == "in_progress")) | .[0].id')
 
             if [ -n "$RUN_ID" ]; then

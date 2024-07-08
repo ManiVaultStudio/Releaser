@@ -31,7 +31,7 @@ jobs:
      - name: Set matrix data
        id: set-matrix
        run: |
-         echo "matrix=$(jq -r .include['1.0'] < ./config.json)" >> $GITHUB_OUTPUT
+         echo "matrix=$(jq -r .include[\"1.0\"] < ./config.json)" >> $GITHUB_OUTPUT
          echo $GITHUB_OUTPUT
   build-plugins:
     runs-on: ubuntu-latest

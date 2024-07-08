@@ -19,13 +19,8 @@ jobs:
       - name: Echo
         run: echo "Building core"
   build-plugins:
-    name: Workflow Dispatch and wait
     runs-on: ubuntu-latest
-    steps:
-      - name: Echo
-        run: echo Building plugins
-  trigger-external-workflow:
-    runs-on: ubuntu-latest
+    needs: build-core
     steps:
       - name: Trigger external workflow
         uses: benc-uk/workflow-dispatch@v1
@@ -35,7 +30,6 @@ jobs:
           repo: BinIO
           ref: release/core_1.0/0.5
           token: ${{ secrets.PA_TOKEN }}
-          inputs: '{"environment": "production", "version": "1.0.0"}'
           wait-for-completion: true
   build-installer:
     needs: build-plugins

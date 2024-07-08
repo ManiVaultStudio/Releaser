@@ -24,7 +24,7 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          repo: ['ManiVaultStudio/BinIO']
+          repo: [[ 'BinIO', 'feature/core_1.0/0.5' ]]
     runs-on: windows-latest
     steps:
       - name: Trigger plugin build workflow
@@ -32,8 +32,8 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo }}"
-          REF="${{ github.event.inputs.ref }}"
+          REPO="${{ matrix.repo[0] }}"
+          REF="${{ matrix.repo[1] }}"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
@@ -47,7 +47,7 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="${{ matrix.repo }}"
+          REPO="${{ matrix.repo[0] }}"
           RUN_ID=""
           STATUS=""
 

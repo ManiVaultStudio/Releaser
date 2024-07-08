@@ -43,7 +43,7 @@ jobs:
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
           REPO="echo $repo"
-          REF="echo $branch""
+          REF="echo $branch"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \

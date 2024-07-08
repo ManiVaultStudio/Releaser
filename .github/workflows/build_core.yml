@@ -18,8 +18,6 @@ jobs:
 
       - name: Echo
         run: echo "Building core"
-
-
   build-plugins:
     needs: build-core
     strategy:
@@ -27,7 +25,7 @@ jobs:
           inputs:
             - '{ "repo": "BinIO", "branch": "release/core_1.0/0.5" }'
             - '{ "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }'
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Install jq
         run: sudo apt-get install -y jq

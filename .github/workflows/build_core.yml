@@ -42,7 +42,7 @@ jobs:
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ steps.parse_json.outputs.repo }}
-          ref: $branch
+          ref: ${{ steps.parse_json.outputs.branch }}
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

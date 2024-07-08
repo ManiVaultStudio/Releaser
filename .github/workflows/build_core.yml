@@ -24,17 +24,19 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          config:
+          inputs:
             - '{ "repo": "BinIO", "branch": "release/core_1.0/0.5" }'
             - '{ "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }'
     runs-on: windows-latest
     steps:
+      - name: Install jq
+        run: sudo apt-get install -y jq
       - name: Parse JSON
         id: parse_json
         run: |
-          config='${{ matrix.config }}'
-          repo=$(echo $repo | jq -r '.repo')
-          branch=$(echo $repo | jq -r '.branch')
+          input='${{ matrix.inputs }}'
+          repo=$(echo $input | jq -r '.repo')
+          branch=$(echo $input | jq -r '.branch')
           echo "repo=$repo" >> $GITHUB_ENV
           echo "branch=$branch" >> $GITHUB_ENV
       - name: Trigger plugin build workflow

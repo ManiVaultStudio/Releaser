@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [[ 'BinIO', 'feature/core_1.0/0.5' ]]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,6 +20,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: ManiVaultStudio/BinIO
+          repository: ManiVaultStudio/${{ matrix.repo[0] }}
           event-type: repository-a-completed
-          client-payload: '{"ref": "feature/core_1.0/0.5"}'
+          client-payload: '{"ref": ${{ matrix.repo[1] }}'

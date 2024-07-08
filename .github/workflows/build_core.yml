@@ -42,12 +42,12 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO=ManiVaultStudio/"echo $repo"
+          REPO="echo $repo"
           REF="echo $branch"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/$REPO/actions/workflows/build.yml/dispatches \
+            https://api.github.com/repos/ManiVaultStudio/$REPO/actions/workflows/build.yml/dispatches \
             -d "{\"ref\":\"$REF\"}")
 
           echo "Triggered workflow for building the core: $RESPONSE"

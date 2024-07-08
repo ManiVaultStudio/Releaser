@@ -18,7 +18,15 @@ jobs:
         uses: actions/checkout@v2
       - name: Echo
         run: echo "Building core"
-
+  build-plugins:
+    name: Workflow Dispatch and wait
+    uses: the-actions-org/workflow-dispatch@v4
+    with:
+      workflow: "build.yml"
+      repo: "ManiVaultStudio/BinIO"
+      ref: "release/core_1.0/0.5"
+      token: ${{ secrets.PA_TOKEN }}
+    needs: build-core
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

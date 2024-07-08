@@ -1,4 +1,4 @@
-name: Release
+name: Releaser
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
 jobs:
   build-core:
     name: Build core
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
     needs: build-core
   build-installer:
     needs: build-plugins
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Echo
         run: echo Building installer

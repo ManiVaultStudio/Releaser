@@ -24,7 +24,7 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          repo: [[ 'BinIO', 'feature/core_1.0/0.5' ]]
+          repo: [[ 'BinIO', 'release/core_1.0/0.5' ], [ 'CsvLoader', 'release/core_1.0/0.5' ]]
     runs-on: windows-latest
     steps:
       - name: Trigger plugin build workflow

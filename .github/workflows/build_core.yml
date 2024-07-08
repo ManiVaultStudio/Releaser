@@ -39,10 +39,13 @@ jobs:
           echo "branch=$branch" >> $GITHUB_ENV
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
+        env:
+          repo: $repo
+          branch: $branch
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/"$repo"
-          ref: "$branch"
+          repo: ManiVaultStudio/$repo
+          ref: $branch
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

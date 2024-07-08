@@ -21,6 +21,9 @@ jobs:
   build-plugins:
     name: Workflow Dispatch and wait
     runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo Building plugins
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

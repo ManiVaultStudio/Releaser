@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="echo $repo"
+          REPO=ManiVaultStudio/"echo $repo"
           REF="echo $branch"
           
           RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \

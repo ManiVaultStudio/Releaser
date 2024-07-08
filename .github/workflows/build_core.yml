@@ -62,13 +62,13 @@ jobs:
 
             if [ -n "$RUN_ID" ]; then
               STATUS=$(curl -s -H "Authorization: token $TOKEN" \
-                "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+                "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs/$RUN_ID" \
                 | jq -r '.status')
               echo "Current status: $STATUS"
 
               if [ "$STATUS" == "completed" ]; then
                 CONCLUSION=$(curl -s -H "Authorization: token $TOKEN" \
-                  "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+                  "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs/$RUN_ID" \
                   | jq -r '.conclusion')
                 echo "Workflow completed with conclusion: $CONCLUSION"
                 if [ "$CONCLUSION" != "success" ]; then

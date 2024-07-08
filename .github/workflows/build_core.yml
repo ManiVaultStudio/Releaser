@@ -21,7 +21,6 @@ jobs:
   build-plugins:
     runs-on: ubuntu-latest
     needs: build-core
-    name: OS ${{ steps.parse_json.outputs.repo }}
     strategy:
         matrix:
           inputs:
@@ -49,6 +48,7 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+    name: OS ${{ steps.parse_json.outputs.repo }}
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

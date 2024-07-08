@@ -24,14 +24,14 @@ jobs:
     needs: build-core
     strategy:
         matrix:
-          repo:
+          config:
             - '{ "repo": "BinIO", "branch", "release/core_1.0/0.5" }'
     runs-on: windows-latest
     steps:
       - name: Parse JSON
         id: parse_json
         run: |
-          combination='${{ matrix.repo }}'
+          config='${{ matrix.config }}'
           repo=$(echo $repo | jq -r '.repo')
           branch=$(echo $repo | jq -r '.branch')
           echo "repo=$repo" >> $GITHUB_ENV

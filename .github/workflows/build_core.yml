@@ -46,7 +46,6 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/ManiVaultStudio/$repo/actions/workflows/build.yml/dispatches \
             -d "{\"ref\":\"$branch\"}")
-
           echo "Triggered workflow for building the core: $RESPONSE"
           
       - name: Wait for plugin build workflow to complete
@@ -54,13 +53,11 @@ jobs:
         shell: bash
         run: |
           TOKEN="${{ secrets.PA_TOKEN }}"
-          REPO="echo $repo"
           RUN_ID=""
           STATUS=""
-
           while [ "$STATUS" != "completed" ]; do
             RUN_ID=$(curl -s -H "Authorization: token $TOKEN" \
-              "https://api.github.com/repos/$REPO/actions/runs?branch=${{ github.event.inputs.ref }}" \
+              "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs?branch=${{ github.event.inputs.ref }}" \
               | jq -r '.workflow_runs | map(select(.status == "in_progress")) | .[0].id')
 
             if [ -n "$RUN_ID" ]; then

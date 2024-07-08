@@ -21,13 +21,28 @@ jobs:
   build-plugins:
     runs-on: ubuntu-latest
     needs: build-core
+    strategy:
+        matrix:
+          inputs:
+            - '{ "repo": "BinIO", "branch": "release/core_1.0/0.5" }'
+            - '{ "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }'
     steps:
+      - name: Install jq
+        run: sudo apt-get install -y jq
+      - name: Parse matrix JSON
+        id: parse_json
+        run: |
+          input='${{ matrix.inputs }}'
+          repo=$(echo $input | jq -r '.repo')
+          branch=$(echo $input | jq -r '.branch')
+          echo "repo=$repo" >> $GITHUB_ENV
+          echo "branch=$branch" >> $GITHUB_ENV
       - name: Trigger external workflow
         uses: the-actions-org/workflow-dispatch@v4
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/BinIO
-          ref: release/core_1.0/0.5
+          repo: ManiVaultStudio/$repo
+          ref: $branch
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

@@ -20,7 +20,7 @@ jobs:
         run: echo "Building core"
   build-plugins:
     name: Workflow Dispatch and wait
-    
+    runs-on: ubuntu-latest
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

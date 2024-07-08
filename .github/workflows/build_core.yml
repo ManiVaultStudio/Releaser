@@ -24,6 +24,17 @@ jobs:
     steps:
       - name: Echo
         run: echo Building plugins
+  trigger-external-workflow:
+    name: Trigger external workflow
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: target-workflow.yml
+        owner: ManiVaultStudio
+        repo: BinIO
+        ref: release/core_1.0/0.5
+        token: ${{ secrets.PA_TOKEN }}
+        inputs: '{"environment": "production", "version": "1.0.0"}'
+        wait-for-completion: true
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

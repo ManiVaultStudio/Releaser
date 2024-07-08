@@ -41,7 +41,7 @@ jobs:
         uses: the-actions-org/workflow-dispatch@v4
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/${{ steps.step2.outputs.repo }}
+          repo: ManiVaultStudio/${{ steps.parse_json.outputs.repo }}
           ref: $branch
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true

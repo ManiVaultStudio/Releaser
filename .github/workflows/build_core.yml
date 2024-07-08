@@ -24,31 +24,21 @@ jobs:
     strategy:
         matrix:
           inputs:
-            - '{ "repo": "BinIO", "branch": "release/core_1.0/0.5" }'
-            - '{ "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }'
+            - { "repo": "BinIO", "branch": "release/core_1.0/0.5" }
+            - { "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }
+    name: Build - ${{ matrix.inputs.repo }}
     steps:
-      - name: Install jq
-        run: sudo apt-get install -y jq
-      - name: Parse matrix JSON
-        id: parse_json
-        run: |
-          input='${{ matrix.inputs }}'
-          repo=$(echo $input | jq -r '.repo')
-          branch=$(echo $input | jq -r '.branch')
-          echo "repo=$repo" >> $GITHUB_OUTPUT
-          echo "branch=$branch" >> $GITHUB_OUTPUT
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/${{ steps.parse_json.outputs.repo }}
-          ref: ${{ steps.parse_json.outputs.branch }}
+          repo: ManiVaultStudio/${{ matrix.inputs.repo }}
+          ref: ${{ matrix.inputs.branch }}
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-    name: OS ${{ steps.parse_json.outputs.repo }}
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

@@ -15,73 +15,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Echo
         run: echo "Building core"
   build-plugins:
     needs: build-core
-    strategy:
-        matrix:
-          inputs:
-            - '{ "repo": "BinIO", "branch": "release/core_1.0/0.5" }'
-            - '{ "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install jq
-        run: sudo apt-get install -y jq
-      - name: Parse JSON
-        id: parse_json
-        run: |
-          input='${{ matrix.inputs }}'
-          repo=$(echo $input | jq -r '.repo')
-          branch=$(echo $input | jq -r '.branch')
-          echo "repo=$repo" >> $GITHUB_ENV
-          echo "branch=$branch" >> $GITHUB_ENV
-      - name: Trigger plugin build workflow
-        id: trigger_workflow
-        shell: bash
-        run: |
-          TOKEN="${{ secrets.PA_TOKEN }}"
-          RESPONSE=$(curl -s -X POST -H "Authorization: token $TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/ManiVaultStudio/$repo/actions/workflows/build.yml/dispatches \
-            -d "{\"ref\":\"$branch\"}")
-          echo "Triggered workflow for building the core: $RESPONSE"
-          
-      - name: Wait for plugin build workflow to complete
-        id: wait_workflow
-        shell: bash
-        run: |
-          TOKEN="${{ secrets.PA_TOKEN }}"
-          RUN_ID=""
-          STATUS=""
-          while [ "$STATUS" != "completed" ]; do
-            RUN_ID=$(curl -s -H "Authorization: token $TOKEN" \
-              "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs?branch=$branch" \
-              | jq -r '.workflow_runs | map(select(.status == "in_progress")) | .[0].id')
-
-            if [ -n "$RUN_ID" ]; then
-              STATUS=$(curl -s -H "Authorization: token $TOKEN" \
-                "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs/$RUN_ID" \
-                | jq -r '.status')
-              echo "Current status: $STATUS"
-
-              if [ "$STATUS" == "completed" ]; then
-                CONCLUSION=$(curl -s -H "Authorization: token $TOKEN" \
-                  "https://api.github.com/repos/ManiVaultStudio/$repo/actions/runs/$RUN_ID" \
-                  | jq -r '.conclusion')
-                echo "Workflow completed with conclusion: $CONCLUSION"
-                if [ "$CONCLUSION" != "success" ]; then
-                  exit 1
-                fi
-                break
-              fi
-            else
-              echo "Workflow has not started yet. Waiting..."
-            fi
-            sleep 10
-          done
-
+    uses: the-actions-org/workflow-dispatch@v4
+    with:
+      workflow: build.yml
+      repo: ManiVaultStudio/BinIO
+      ref: "release/core_1.0/0.5"
+      token: ${{ secrets.PA_TOKEN }}
+      wait-for-completion: true
   build-installer:
     needs: build-plugins
     runs-on: windows-latest

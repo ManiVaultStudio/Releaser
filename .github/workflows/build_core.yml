@@ -19,10 +19,10 @@ jobs:
         run: echo "Building core"
   build-plugins:
     needs: build-core
-    uses: the-actions-org/workflow-dispatch@v4
+    uses: the-actions-org/workflow-dispatch-and-wait@v4
     with:
       workflow: build.yml
-      repo: ManiVaultStudio/BinIO
+      repo: "ManiVaultStudio/BinIO"
       ref: "release/core_1.0/0.5"
       token: ${{ secrets.PA_TOKEN }}
       wait-for-completion: true

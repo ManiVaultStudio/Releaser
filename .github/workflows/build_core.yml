@@ -29,8 +29,12 @@ jobs:
      - name: Checkout to repository
        uses: actions/checkout@v3
      - name: Set matrix data
-       id: set-matrix
-       run: echo "matrix=$(jq config.json)" >> $GITHUB_OUTPUT
+       run: |
+          content=`cat ./config.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo $content >> $GITHUB_OUTPUT
      - name: Display matrix data
        id: display-matrix
        run: echo $GITHUB_OUTPUT 

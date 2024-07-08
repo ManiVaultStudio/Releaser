@@ -32,8 +32,8 @@ jobs:
         id: parse_json
         run: |
           combination='${{ matrix.repo }}'
-          value1=$(echo $combination | jq -r '.value1')
-          value2=$(echo $combination | jq -r '.value2')
+          repo=$(echo $repo | jq -r '.repo')
+          branch=$(echo $repo | jq -r '.branch')
           echo "repo=$repo" >> $GITHUB_ENV
           echo "branch=$branch" >> $GITHUB_ENV
       - name: Trigger plugin build workflow

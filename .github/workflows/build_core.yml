@@ -34,7 +34,11 @@ jobs:
       ref: release/core_1.0/0.5
       token: ${{ secrets.PA_TOKEN }}
       inputs: '{"environment": "production", "version": "1.0.0"}'
-      wait-for-completion: true 
+      wait-for-completion: true
+    steps:
+      - name: Echo
+        run: echo Building installer
+
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

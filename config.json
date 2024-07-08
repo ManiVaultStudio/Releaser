@@ -1,12 +1,10 @@
 {
     "include": [
-      {
-        "repo": "BinIO",
-        "branch": "release/core_1.0/0.5"
-      },
-      {
-        "repo": "CsvLoader",
-        "branch": "release/core_1.0/0.5"
-      }
+        {
+            "1.0": [
+                { "repo": "BinIO", "branch": "release/core_1.0/0.5" },
+                { "repo": "CsvLoader", "branch": "release/core_1.0/0.5" }
+            ]
+        }
     ]
 }

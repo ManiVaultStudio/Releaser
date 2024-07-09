@@ -26,18 +26,17 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-     - name: Checkout to repository
-       uses: actions/checkout@v3
-     - name: Set matrix data
-       run: |
-          content=`cat ./1.0.json`
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo $content >> $GITHUB_OUTPUT
-     - name: Display matrix data
-       id: display-matrix
-       run: echo $GITHUB_OUTPUT 
+      - name: Install jq
+        run: sudo apt-get install -y jq
+      - name: Read and parse JSON
+        id: read-json
+        run: |
+          env="production"
+          version=$(jq -r config/1.0.json)
+          echo "VERSION=$version" >> $GITHUB_ENV
+      - name: Display matrix data
+        id: display-matrix
+        run: echo $VERSION 
   build-plugins:
     runs-on: ubuntu-latest
     needs: configure

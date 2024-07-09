@@ -26,6 +26,8 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install jq
         run: sudo apt-get install -y jq
       - name: Read and parse JSON

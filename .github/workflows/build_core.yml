@@ -24,17 +24,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-core
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Read and parse JSON
-        id: read-json
-        run: echo "::set-output name=json_data::$(cat ./config/1.0.json)"
+      - name: Get JSON content
+        id: get-json-content
+        run: |
+          echo 'JSON_CONTENT<<EOF' >> $GITHUB_OUTPUT
+          cat ./config/1.0.json >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+    outputs:
+      new_content: ${{ steps.get-json-content.outputs.JSON_CONTENT }} 
   build-plugins:
     runs-on: ubuntu-latest
     needs: set-json
     strategy:
         matrix:
-          repo: ${{fromJson(needs.set-json.outputs.json_data).environments}}
+          repo: ${{ fromJSON(needs.set-json.outputs.new_content) }}
     name: Build - ${{ matrix.repo }}
     steps:
       - name: Show matrix

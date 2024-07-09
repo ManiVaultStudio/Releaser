@@ -40,16 +40,16 @@ jobs:
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.set-json.outputs.new_content) }}
-    name: Build - ${{ matrix.repo }}
+    name: Build - ${{ matrix.repo.name }}
     steps:
-      - name: Show matrix
+      - name: Display matrix
         run: echo ${{ matrix }}
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
         with:
           workflow: build.yml
-          repo: ManiVaultStudio/${{ matrix.repo }}
-          ref: ${{ matrix.branch }}
+          repo: ManiVaultStudio/${{ matrix.repo.name }}
+          ref: ${{ matrix.repo.branch }}
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

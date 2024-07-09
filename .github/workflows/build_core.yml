@@ -21,7 +21,7 @@ jobs:
         with:
           workflow: build.yml
           repo: ManiVaultStudio/core
-          ref: release${{ inputs.version }}
+          ref: release/${{ inputs.version }}
           token: ${{ secrets.PA_TOKEN }}
           wait-for-completion: true
           wait-for-completion-timeout: 2h

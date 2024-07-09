@@ -32,7 +32,7 @@ jobs:
         id: read-json
         run: |
           env="production"
-          version=$(jq -r config/1.0.json)
+          version=$(jq -r tostring config/1.0.json)
           echo "VERSION=$version" >> $GITHUB_ENV
       - name: Display matrix data
         id: display-matrix

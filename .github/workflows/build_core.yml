@@ -16,10 +16,17 @@ jobs:
     name: Build core
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Echo
-        run: echo "Building core"
+      - name: Trigger core build workflow
+        uses: the-actions-org/workflow-dispatch@v4
+        with:
+          workflow: build.yml
+          repo: ManiVaultStudio/core
+          ref: release${{ inputs.version }}
+          token: ${{ secrets.PA_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout: 2h
+          display-workflow-run-url: true
+          workflow-logs: print
   load-config:
     name: Load configuration
     runs-on: ubuntu-latest

@@ -34,13 +34,13 @@ jobs:
           cat ./config/1.0.json >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
     outputs:
-      new_content: ${{ steps.get-json-content.outputs.json_content }} 
+      json_content: ${{ steps.get-json-content.outputs.json_content }} 
   build-plugins:
     runs-on: ubuntu-latest
     needs: load-config
     strategy:
         matrix:
-          repo: ${{ fromJSON(needs.set-json.outputs.new_content) }}
+          repo: ${{ fromJSON(needs.set-json.outputs.json_content) }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Display matrix

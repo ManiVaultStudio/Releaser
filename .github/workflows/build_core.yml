@@ -40,7 +40,7 @@ jobs:
     needs: load-config
     strategy:
         matrix:
-          repo: ${{ fromJSON(needs.set-json.outputs.json_content) }}
+          repo: ${{ fromJSON(needs.load-config.outputs.json_content) }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Display matrix

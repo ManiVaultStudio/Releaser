@@ -26,8 +26,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install jq
-        run: sudo apt-get install -y jq
       - name: Read and parse JSON
         id: read-json
         run: |
@@ -35,7 +33,7 @@ jobs:
           echo "::set-output name=repos::$repos"
       - name: Set job output
         id: job-output
-        run: echo "version=${{ steps.configure.outputs.repos }}" >> $GITHUB_ENV
+        run: echo "repos=${{ steps.configure.outputs.repos }}" >> $GITHUB_ENV
     outputs:
       version: ${{ steps.configure.outputs.repos }}
   build-plugins:

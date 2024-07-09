@@ -31,7 +31,7 @@ jobs:
       - name: Read and parse JSON
         id: read-json
         run: |
-          repos=$(jq -r ./config/1.0.json)
+          repos=$(jq -r tostring ./config/1.0.json)
           echo "::set-output name=repos::$repos"
       - name: Set job output
         id: job-output

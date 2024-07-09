@@ -32,7 +32,7 @@ jobs:
           repos=$(cat ./config/1.0.json)
           echo "::set-output name=repos::$repos"
           echo $REPOS=repos >> $GITHUB_ENV
-          echo "::set-output name=repos::${{ env.REPOS }}"
+          echo "::set-output name=repos::$repos"
     outputs:
       version: ${{ steps.configure.outputs.repos }}
   build-plugins:

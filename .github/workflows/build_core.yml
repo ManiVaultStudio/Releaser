@@ -28,9 +28,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Read and parse JSON
         id: read-json
-        run: |
-          repos=$(cat ./config/1.0.json)
-          echo "::set-output name=repos::$repos"
+        run: echo "::set-output name=repos::$(cat ./config/1.0.json)"
     outputs:
       version: ${{ steps.configure.outputs.repos }}
   build-plugins:

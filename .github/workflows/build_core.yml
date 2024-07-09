@@ -34,7 +34,7 @@ jobs:
     needs: set-json
     strategy:
         matrix:
-          repo: ${{fromJson(needs.set-json.outputs.json_data).environments | keys }}
+          repo: ${{fromJson(needs.set-json.outputs.json_data).environments}}
     name: Build - ${{ matrix.repo }}
     steps:
       - name: Show matrix

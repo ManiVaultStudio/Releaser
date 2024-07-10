@@ -1,0 +1,4 @@
+[
+    { "name": "HDF5Loader", "branch": "release/core_1.0/1.2" },
+    { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_1.0/0.3" }
+]

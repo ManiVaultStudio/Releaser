@@ -11,6 +11,9 @@ on:
         options:
         - '1.0'
         - GeneSurfer
+      skip-core:
+        type: boolean
+        description: Skip core build
 jobs:
   build-core:
     name: Build core
@@ -27,6 +30,7 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+    if: ${{ inputs.skip-core == 'false' }}
   load-config:
     name: Load configuration
     runs-on: ubuntu-latest

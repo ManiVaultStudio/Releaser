@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.skip-core == 'false' }}
+        if: ${{ inputs.skip-plugins == 'false' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}
@@ -83,27 +83,3 @@ jobs:
       - name: Echo
         run: echo Building installer
         if: ${{ inputs.build-installer == 'false' }}
-
-#name: Build core
-
-#on:
-#  workflow_dispatch
-    
-#jobs:
-##  build-core:
-    #name: Build core
-    #runs-on: windows-latest
-    #steps:
-     # - name: Trigger workflow in core
-     #   uses: peter-evans/repository-dispatch@v1
-     #   with:
-     #     token: ${{ secrets.PA_TOKEN }}
-     ##     repository: ManiVaultStudio/core
-      #    event-type: core-completed
-      #    client-payload: |-
-      #      {
-      #        "repo": {
-      #          "name": "ManiVaultStudio/core",
-      #          "branch": "release/1.0"
-      #        }
-      #      }

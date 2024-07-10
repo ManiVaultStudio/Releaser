@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Trigger core build workflow
         uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.skip-core == 'false' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/core

@@ -1,4 +1,22 @@
 [
+    { "name": "MeanShiftClustering", "branch": "release/core_1.0/0.4" },
+    { "name": "PcaPlugin", "branch": "release/core_1.0/0.3" },
+    { "name": "t-SNE-Analysis", "branch": "release/core_1.0/0.5" },
+    { "name": "ExamplePlugins", "branch": "release/core_1.0/1.2" },
+    { "name": "BinIO", "branch": "release/core_1.0/0.5" },
+    { "name": "CsvLoader", "branch": "release/core_1.0/0.5" },
+    { "name": "CsvWriter", "branch": "release/core_1.0/0.3" },
+    { "name": "ENVILoader", "branch": "release/core_1.0/0.4" },
+    { "name": "ExtCsvLoader", "branch": "release/core_1.0/0.3" },
     { "name": "HDF5Loader", "branch": "release/core_1.0/1.2" },
-    { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_1.0/0.3" }
+    { "name": "ImageLoaderPlugin", "branch": "release/core_1.0/0.4" },
+    { "name": "PointDataConversionPlugin", "branch": "release/core_1.0/0.3" },
+    { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_1.0/0.3" },
+    { "name": "DimensionsViewerPlugin", "branch": "release/core_1.0/0.5" },
+    { "name": "Heatmap", "branch": "release/core_1.0/0.4" },
+    { "name": "ImageViewerPlugin", "branch": "release/core_1.0/0.5" },
+    { "name": "ParallelCoordinatesPlugin", "branch": "release/core_1.0/0.5" },
+    { "name": "Scatterplot", "branch": "release/core_1.0/0.5" },
+    { "name": "SpectralViewPlugin", "branch": "release/core_1.0/0.3" },
+    { "name": "SpidrPlugin", "branch": "release/core_1.0/1.2" },
 ]

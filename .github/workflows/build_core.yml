@@ -14,6 +14,10 @@ on:
       skip-core:
         type: boolean
         description: Skip core build
+      build-installer:
+        type: boolean
+        description: Build installer
+        default: true
 jobs:
   build-core:
     name: Build core
@@ -31,7 +35,6 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-    if: ${{ inputs.skip-core == 'false' }}
   load-config:
     name: Load configuration
     runs-on: ubuntu-latest
@@ -74,6 +77,7 @@ jobs:
     steps:
       - name: Echo
         run: echo Building installer
+        if: ${{ inputs.build-installer == 'false' }}
 
 #name: Build core
 

@@ -15,11 +15,11 @@ on:
       skip-core:
         type: boolean
         default: false
-        description: Skip core build
+        description: Build build
       skip-plugins:
         type: boolean
         default: false
-        description: Skip plugins build
+        description: Build plugins
       build-installer:
         type: boolean
         description: Build installer

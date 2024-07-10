@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-plugins == 'true' }}
+        if: ${{ inputs.build-plugins == true }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

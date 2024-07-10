@@ -13,6 +13,11 @@ on:
         - GeneSurfer
       skip-core:
         type: boolean
+        default: true
+        description: Skip core build
+      skip-plugins:
+        type: boolean
+        default: true
         description: Skip core build
       build-installer:
         type: boolean
@@ -41,7 +46,7 @@ jobs:
     needs: build-core
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get JSON content
         id: get-json-content
         run: |
@@ -58,10 +63,9 @@ jobs:
           repo: ${{ fromJSON(needs.load-config.outputs.json_content) }}
     name: Build - ${{ matrix.repo.name }}
     steps:
-      - name: Display matrix
-        run: echo ${{ matrix }}
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.skip-core == 'false' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

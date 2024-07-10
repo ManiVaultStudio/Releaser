@@ -14,12 +14,12 @@ on:
         - test
       skip-core:
         type: boolean
-        default: true
+        default: false
         description: Skip core build
       skip-plugins:
         type: boolean
-        default: true
-        description: Skip core build
+        default: false
+        description: Skip plugins build
       build-installer:
         type: boolean
         description: Build installer

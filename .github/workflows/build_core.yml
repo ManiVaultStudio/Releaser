@@ -11,6 +11,7 @@ on:
         options:
         - '1.0'
         - GeneSurfer
+        - test
       skip-core:
         type: boolean
         default: true

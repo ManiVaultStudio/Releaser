@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Trigger core build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-core == 'true' }}
+        if: ${{ inputs.build-core == true }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/core

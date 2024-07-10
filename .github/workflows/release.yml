@@ -12,11 +12,11 @@ on:
         - '1.0'
         - GeneSurfer
         - test
-      skip-core:
+      build-core:
         type: boolean
         default: false
         description: Build core
-      skip-plugins:
+      build-plugins:
         type: boolean
         default: false
         description: Build plugins
@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Trigger core build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.skip-core == 'false' }}
+        if: ${{ inputs.build-core == 'true' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/core
@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.skip-plugins == 'false' }}
+        if: ${{ inputs.build-plugins == 'true' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

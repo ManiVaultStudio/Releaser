@@ -92,4 +92,4 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: { "version": "${{ inputs.version }}" }
+          inputs: '{ "version": "${{ inputs.version }}" }'

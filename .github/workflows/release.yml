@@ -10,7 +10,7 @@ on:
         type: choice
         options:
         - '1.0'
-        - GeneSurfer
+        - genesurfer
         - test
       build-core:
         type: boolean

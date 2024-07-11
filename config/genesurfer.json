@@ -1,1 +1,8 @@
-
+[
+    { "name": "t-SNE-Analysis", "branch": "release/core_genesurfer/genesurfer_1.0" },
+    { "name": "HDF5Loader", "branch": "release/core_genesurfer/genesurfer_1.0" },
+    { "name": "GeneSurfer", "branch": "release/core_genesurfer/genesurfer_0.1" },
+    { "name": "Scatterplot", "branch": "release/core_genesurfer/genesurfer_1.0" },
+    { "name": "SpaceWalker", "branch": "release/core_genesurfer/genesurfer_1.0" },
+    { "name": "VolumeViewerPlugin", "branch": "release/core_genesurfer/genesurfer_0.1" }
+]

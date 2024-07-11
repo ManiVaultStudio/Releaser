@@ -84,7 +84,7 @@ jobs:
         uses: the-actions-org/workflow-dispatch@v4
         if: ${{ inputs.build-installer == true }}
         with:
-          workflow: build.yml
+          workflow: manual.yml
           repo: ManiVaultStudio/Installer
           ref: main
           token: ${{ secrets.PA_TOKEN }}

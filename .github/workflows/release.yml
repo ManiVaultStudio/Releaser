@@ -80,6 +80,16 @@ jobs:
     needs: build-plugins
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        run: echo Building installer
-        if: ${{ inputs.build-installer == 'false' }}
+      - name: Trigger installer build
+        uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.build-installer == true }}
+        with:
+          workflow: build.yml
+          repo: ManiVaultStudio/Installer
+          ref: main
+          token: ${{ secrets.PA_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout: 2h
+          display-workflow-run-url: true
+          workflow-logs: print
+          inputs: { "version": "${{ inputs.version }}" }

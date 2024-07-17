@@ -12,6 +12,7 @@ on:
         - '1.0'
         - genesurfer
         - test
+        - hierarchy_viewer
       build-core:
         type: boolean
         default: false

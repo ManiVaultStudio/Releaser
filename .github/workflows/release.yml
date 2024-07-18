@@ -66,7 +66,7 @@ jobs:
     needs: load-config
     strategy:
         matrix:
-          repo: ${{ fromJSON(needs.load-config.outputs.json_content)['Plugins'] }}
+          repo: ${{ fromJSON(needs.load-config.outputs.json_content)['data_plugins'] }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Trigger plugin build workflow
@@ -86,7 +86,7 @@ jobs:
     needs: build-data-plugins
     strategy:
         matrix:
-          repo: ${{ fromJSON(needs.load-config.outputs.json_content)['Plugins'] }}
+          repo: ${{ fromJSON(needs.load-config.outputs.json_content)['plugins'] }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Trigger plugin build workflow

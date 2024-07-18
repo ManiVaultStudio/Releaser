@@ -66,7 +66,7 @@ jobs:
     needs: load-config
     strategy:
         matrix:
-          repo: ${{ fromJSON(needs.load-config.outputs.json_content).Plugins }}
+          repo: ${{ fromJSON(needs.load-config.outputs.json_content)["Plugins"] }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Trigger plugin build workflow

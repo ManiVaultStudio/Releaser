@@ -1,9 +1,15 @@
-[
-    { "name": "t-SNE-Analysis", "branch": "release/core_genesurfer/genesurfer_1.0" },
-    { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" },
-    { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" },
-    { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" },
-    { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" },
-    { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" },
-    { "name": "Scatterplot", "branch": "release/core_hierarchy_viewer/hierarchy_viewer_1.0" }
+{
+    "data_plugins": [
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" }
+    ],
+    "plugins": [
+        { "name": "t-SNE-Analysis", "branch": "release/core_comparison/comparison_1.0" },
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
+        { "name": "Scatterplot", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" }
+    ]
 ]

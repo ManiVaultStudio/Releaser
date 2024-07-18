@@ -12,4 +12,4 @@
         { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
         { "name": "Scatterplot", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" }
     ]
-]
+}

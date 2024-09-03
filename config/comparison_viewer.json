@@ -1,6 +1,6 @@
 {
     "installer_config": {
-        "os": "Macos"
+        "os": "Macos",
         "version": "comparison_viewer",
         "application_name": "Cytosplore"
     },

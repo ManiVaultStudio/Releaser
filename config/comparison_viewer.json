@@ -1,15 +1,15 @@
 {
     "data_plugins": [
-        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" }
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" }
     ],
     "plugins": [
-        { "name": "t-SNE-Analysis", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" },
-        { "name": "Scatterplot", "branch": "release/core_comparison_viewer/comparison_viewer_1.0" }
+        { "name": "t-SNE-Analysis", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "Scatterplot", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" }
     ]
 }

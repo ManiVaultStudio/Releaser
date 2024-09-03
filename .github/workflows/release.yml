@@ -141,4 +141,4 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: ${{ fromJSON(needs.load-plugins-config.outputs.json_content)['installer_config'] }}
+          inputs: ${{ fromJSON(steps.get-json-content.outputs.json_content)['installer_config'] }}

@@ -133,7 +133,7 @@ jobs:
     outputs:
       json_content: ${{ steps.get-json-content.outputs.json_content }}
   build-installer:
-    needs: build-plugins
+    needs: load-installer-config
     runs-on: ubuntu-latest
     steps:
       - name: Trigger installer build

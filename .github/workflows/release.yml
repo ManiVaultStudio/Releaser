@@ -117,6 +117,7 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+          inputs: '{ "forceMacBuild": true }'
     outputs:
         json_content: ${{ steps.get-json-content.outputs.json_content }}
   build-installer:

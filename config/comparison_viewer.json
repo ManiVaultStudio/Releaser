@@ -1,4 +1,9 @@
 {
+    "installer_config": {
+        "os": "Macos"
+        "version": "comparison_viewer",
+        "application_name": "Cytosplore"
+    },
     "data_plugins": [
         { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
         { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" }

@@ -81,6 +81,7 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+          inputs: '{ "forceMacBuild": True }'
   load-plugins-config:
     name: Load plugins config
     runs-on: ubuntu-latest

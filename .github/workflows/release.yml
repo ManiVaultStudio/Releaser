@@ -116,6 +116,8 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+    outputs:
+        json_content: ${{ steps.get-json-content.outputs.json_content }}
   build-installer:
     needs: build-plugins
     runs-on: ubuntu-latest

@@ -117,8 +117,8 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-  load-installer-config:
-    name: Load installer config
+  load-installer-config-a:
+    name: Load installer config (1)
     runs-on: ubuntu-latest
     needs: build-plugins
     steps:
@@ -133,7 +133,7 @@ jobs:
     outputs:
       json_content: ${{ steps.get-json-content.outputs.json_content }}
   build-installer:
-    needs: load-installer-config
+    needs: load-installer-config-a
     runs-on: ubuntu-latest
     steps:
       - name: Trigger installer build
@@ -148,4 +148,4 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: "${ fromJSON(needs.load-installer-config.outputs.json_content)['installer_config'] }"
+          inputs: '{ ${{ fromJSON(needs.load-installer-config-a.outputs.json_content)["installer_config"] }} }'

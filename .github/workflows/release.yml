@@ -6,7 +6,7 @@ on:
       version:
         description: 'Application name'
         required: true
-        default: '1.0'
+        default: 'comparison_viewer'
         type: choice
         options:
         - '1.0'
@@ -15,15 +15,15 @@ on:
         - comparison_viewer
       build-core:
         type: boolean
-        default: true
+        default: false
         description: Build core
       build-data-plugins:
         type: boolean
-        default: true
+        default: false
         description: Build data plugins
       build-plugins:
         type: boolean
-        default: true
+        default: false
         description: Build plugins
       build-installer:
         type: boolean

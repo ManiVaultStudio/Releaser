@@ -130,6 +130,10 @@ jobs:
           echo 'json_content<<EOF' >> $GITHUB_OUTPUT
           cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+      - name: Display  JSON content
+        id: display-json-content
+        run: |
+          echo ${{ json_content }}
     outputs:
       json_content: ${{ steps.get-json-content.outputs.json_content }}
   load-installer-config-b:

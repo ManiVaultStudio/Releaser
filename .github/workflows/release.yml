@@ -166,5 +166,5 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: ${{ extracted_json_str }}
+          inputs: ${{ steps.extract_json.extracted_json_str }}
     

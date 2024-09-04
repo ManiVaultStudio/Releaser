@@ -137,6 +137,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: load-installer-config-a
     steps:
+      - name: Display  JSON content
+        id: get-json-content
+        run: |
+          echo ${{ needs.load-installer-config-a.outputs.json_content }}
       - name: Checkout code
         uses: actions/checkout@v4
     outputs:

@@ -130,10 +130,6 @@ jobs:
           echo 'json_content<<EOF' >> $GITHUB_OUTPUT
           cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
-      - name: Display  JSON content
-        id: display-json-content
-        run: |
-          echo ${{ json_content }}
     outputs:
       json_content: ${{ steps.get-json-content.outputs.json_content }}
   load-installer-config-b:
@@ -145,24 +141,4 @@ jobs:
         id: get-json-content
         run: |
           echo ${{ needs.load-installer-config-a.outputs.json_content }}
-      - name: Checkout code
-        uses: actions/checkout@v4
-    outputs:
-      json_content: ${{ fromJSON(needs.load-installer-config-a.outputs.json_content)['installer_config'] }}
-  build-installer:
-    needs: load-installer-config-b
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger installer build
-        uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-installer == true }}
-        with:
-          workflow: manual.yml
-          repo: ManiVaultStudio/Installer
-          ref: main
-          token: ${{ secrets.PA_TOKEN }}
-          wait-for-completion: true
-          wait-for-completion-timeout: 2h
-          display-workflow-run-url: true
-          workflow-logs: print
-          inputs: '{ needs.load-installer-config-b.outputs.json_content }'
+    

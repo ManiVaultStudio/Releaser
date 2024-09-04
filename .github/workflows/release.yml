@@ -166,5 +166,5 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: '{"os":"Macos","version":"comparison_viewer","application_name":"Cytosplore"}'
+          inputs: ${{ steps.extract_json.extracted_json_str }}
     

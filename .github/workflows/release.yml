@@ -131,7 +131,7 @@ jobs:
           cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
     outputs:
-      json_content: ${{ fromJSON(steps.get-json-content.outputs.json_content) }}
+      json_content: ${{ steps.get-json-content.outputs.json_content }}
   load-installer-config-b:
     name: Load installer config (2)
     runs-on: ubuntu-latest
@@ -140,5 +140,5 @@ jobs:
       - name: Display  JSON content
         id: get-json-content
         run: |
-          echo ${{ needs.load-installer-config-a.outputs.json_content["installer_config"] }}
+          echo ${{ needs.load-installer-config-a.outputs.json_content }}
     

@@ -139,7 +139,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Load JSON and extract part of it
         id: extract_json
         run: |
@@ -155,4 +154,17 @@ jobs:
       - name: Use extracted JSON string
         run: |
           echo "The extracted JSON string is: $extracted_json_str"
+      - name: Trigger installer build
+        uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.build-installer == true }}
+        with:
+          workflow: manual.yml
+          repo: ManiVaultStudio/Installer
+          ref: main
+          token: ${{ secrets.PA_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout: 2h
+          display-workflow-run-url: true
+          workflow-logs: print
+          inputs: $extracted_json_str
     

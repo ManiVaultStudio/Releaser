@@ -140,5 +140,5 @@ jobs:
       - name: Display  JSON content
         id: get-json-content
         run: |
-          echo $needs.load-installer-config-a.outputs.json_content
+          echo $load-installer-config-a.outputs.json_content
     

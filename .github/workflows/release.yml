@@ -70,7 +70,7 @@ jobs:
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.load-data-plugins-config.outputs.json_content)['data_plugins'] }}
-    if: success()
+    if: success() && ${{ inputs.build-data-plugins == true }}
     continue-on-error: true
     name: Build - ${{ matrix.repo.name }}
     steps:

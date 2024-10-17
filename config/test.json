@@ -1,6 +1,6 @@
 {
     "DataPlugins": [
-        { "name": "BinIO", "branch": "release/core_1.0/0.5" }
+        
     ],
     "Plugins": [
         { "name": "BinIO", "branch": "release/core_1.0/0.5" },

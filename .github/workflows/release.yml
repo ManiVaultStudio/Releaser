@@ -70,16 +70,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Load matrix from JSON
-        id: extract-matrix
+      - name: Load plugins matrix from JSON
+        id: extract-plugins-matrix
         run: |
-          # Read the jobs from the JSON file
-          matrix=$(jq -c '.plugins' config/test.json)
-
-          # Set the matrix output
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
-          
+          plugins=$(jq -c '.plugins' config/test.json)
+          echo "plugins=$plugins" >> $GITHUB_OUTPUT
+      - name: Debug plugins JSON content
+        id: debug-plugins-json-content
+        run: echo $plugins
+        
   #build-data-plugins:
   #  runs-on: ubuntu-latest
   #  needs: load-data-plugins-config

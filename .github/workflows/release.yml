@@ -96,7 +96,7 @@ jobs:
       - name: Load plugins array from JSON
         id: extract-plugins
         run: |
-          plugins=$(jq '.plugins' config/${{ inputs.version }}.json)
+          plugins=$(jq '.plugins' config/test.json)
           echo "plugins=$plugins" >> $GITHUB_OUTPUT
       - name: Debug plugins JSON content
         id: debug-plugins-json-content

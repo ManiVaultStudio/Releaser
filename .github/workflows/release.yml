@@ -87,12 +87,11 @@ jobs:
     name: Load plugins config
     runs-on: ubuntu-latest
     needs: build-data-plugins
+    if: always()
     steps:
       - name: Checkout code
-        if: ${{ inputs.build-plugins == true }}
         uses: actions/checkout@v4
       - name: Get JSON content
-        if: ${{ inputs.build-plugins == true }}
         id: get-json-content
         run: |
           echo 'json_content<<EOF' >> $GITHUB_OUTPUT

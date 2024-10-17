@@ -59,7 +59,7 @@ jobs:
         id: extract-data-plugins
         run: |
           matrix=$(jq '.data_plugins' config/${{ inputs.version }}.json)
-          echo "::set-output name=data_plugins::$data_plugins"
+          echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
       - name: Get JSON content
         id: get-json-content
         run: echo $data_plugins

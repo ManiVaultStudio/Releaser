@@ -66,19 +66,19 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.extract-data-plugins-matrix.outputs.data-plugins-matrix }}
+      matrix: ${{ steps.extract-matrix.outputs.matrix }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Load matrix from JSON
-        id: extract-data-plugins-matrix
+        id: extract-matrix
         run: |
           # Read the jobs from the JSON file
-          data-plugins-matrix=$(jq '.plugins' config/test.json)
+          matrix=$(jq '.plugins' config.json)
 
           # Set the matrix output
-          echo "data-plugins-matrix=$data-plugins-matrix" >> $GITHUB_OUTPUT
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
           
   #build-data-plugins:
   #  runs-on: ubuntu-latest

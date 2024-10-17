@@ -6,7 +6,7 @@ on:
       version:
         description: 'Application name'
         required: true
-        default: '1.1'
+        default: 'test'
         type: choice
         options:
         - '1.1'
@@ -58,7 +58,7 @@ jobs:
       - name: Load data plugins array from JSON
         id: extract-data-plugins
         run: |
-          matrix=$(jq '.data_plugins' ${{ inputs.version }}.json)
+          matrix=$(jq '.data_plugins' config/${{ inputs.version }}.json)
           echo "::set-output name=data_plugins::$data_plugins"
       - name: Get JSON content
         id: get-json-content

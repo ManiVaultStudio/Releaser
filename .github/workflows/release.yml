@@ -58,7 +58,7 @@ jobs:
       - name: Load data plugins array from JSON
         id: extract-data-plugins
         run: |
-          matrix=$(jq '.data_plugins' config/${{ inputs.version }}.json)
+          data_plugins=$(jq '.data_plugins' config/${{ inputs.version }}.json)
           echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
       - name: Get JSON content
         id: get-json-content

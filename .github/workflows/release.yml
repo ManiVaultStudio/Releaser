@@ -51,13 +51,12 @@ jobs:
     name: Load data plugins config
     runs-on: ubuntu-latest
     needs: build-core
+    if: ${{ inputs.build-data-plugins == true }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        if: ${{ inputs.build-data-plugins == true }}
       - name: Get JSON content
         id: get-json-content
-        if: ${{ inputs.build-data-plugins == true }}
         run: |
           echo 'json_content<<EOF' >> $GITHUB_OUTPUT
           cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
@@ -75,7 +74,6 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-data-plugins == true }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}
@@ -105,7 +103,7 @@ jobs:
   build-plugins:
     runs-on: ubuntu-latest
     needs: load-plugins-config
-    if: success()
+    if: ${{ inputs.build-plugins == true }}
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.load-plugins-config.outputs.json_content)['plugins'] }}
@@ -113,7 +111,6 @@ jobs:
     steps:
       - name: Trigger plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-plugins == true }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

@@ -50,6 +50,7 @@ jobs:
   load-build-config:
     name: Load build config
     runs-on: ubuntu-latest
+    needs: build-core
     continue-on-error: true
     steps:
       - name: Checkout code
@@ -65,7 +66,7 @@ jobs:
   load-data-plugins-config:
     name: Load data plugins config
     runs-on: ubuntu-latest
-    needs: [build-core, load-build-config]
+    needs: load-build-config
     continue-on-error: true
     steps:
       - name: Checkout code
@@ -103,7 +104,7 @@ jobs:
   load-plugins-config:
     name: Load plugins config
     runs-on: ubuntu-latest
-    needs: [build-core, load-build-config]
+    needs: [load-data-plugins-config, load-build-config]
     continue-on-error: true
     steps:
       - name: Checkout code

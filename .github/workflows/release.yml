@@ -47,38 +47,22 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-  load-build-config:
-    name: Load build config
+  load-data-plugins-config:
+    name: Load data plugins config
     runs-on: ubuntu-latest
     needs: build-core
     continue-on-error: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Load data plugins array from JSON
+        id: extract-data-plugins
+        run: |
+          matrix=$(jq '.data_plugins' ${{ inputs.version }}.json)
+          echo "::set-output name=data_plugins::$data_plugins"
       - name: Get JSON content
         id: get-json-content
-        run: |
-          echo 'json_content<<EOF' >> $GITHUB_OUTPUT
-          cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-    outputs:
-      json_content: ${{ steps.get-json-content.outputs.json_content }}
-  load-data-plugins-config:
-    name: Load data plugins config
-    runs-on: ubuntu-latest
-    needs: load-build-config
-    continue-on-error: true
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Get JSON content
-        id: get-json-content
-        run: |
-          echo 'json_content<<EOF' >> $GITHUB_OUTPUT
-          cat ./config/${{ inputs.version }}.json >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-    outputs:
-      json_content: ${{ steps.get-json-content.outputs.json_content }}
+        run: echo $data_plugins
   #build-data-plugins:
   #  runs-on: ubuntu-latest
   #  needs: load-data-plugins-config

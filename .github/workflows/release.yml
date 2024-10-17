@@ -67,6 +67,7 @@ jobs:
   build-data-plugins:
     runs-on: ubuntu-latest
     needs: load-data-plugins-config
+    if: ${{ inputs.build-data-plugins == true }}
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.load-data-plugins-config.outputs.json_content)['data_plugins'] }}

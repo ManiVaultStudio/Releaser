@@ -53,10 +53,8 @@ jobs:
     needs: build-core
     steps:
       - name: Checkout code
-        if: ${{ inputs.build-data-plugins == true }}
         uses: actions/checkout@v4
       - name: Get JSON content
-        if: ${{ inputs.build-data-plugins == true }}
         id: get-json-content
         run: |
           echo 'json_content<<EOF' >> $GITHUB_OUTPUT

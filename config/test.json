@@ -1,8 +1,12 @@
 {
-    "DataPlugins": [
-        
+    "installer_config": {
+        "os": "Windows",
+        "version": "test",
+        "application_name": "ManiVault"
+    },
+    "data_plugins": [
     ],
-    "Plugins": [
+    "plugins": [
         { "name": "BinIO", "branch": "release/core_1.0/0.5" },
         { "name": "CsvLoader", "branch": "release/core_1.0/0.5" }
     ]

@@ -75,7 +75,7 @@ jobs:
         id: extract-matrix
         run: |
           # Read the jobs from the JSON file
-          matrix=$(jq '.plugins' config.json)
+          matrix=$(jq '.plugins' config/test.json)
 
           # Set the matrix output
           echo "matrix=$matrix" >> $GITHUB_OUTPUT

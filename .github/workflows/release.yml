@@ -68,11 +68,10 @@ jobs:
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.load-data-plugins-config.outputs.json_content)['data_plugins'] }}
-    if: ${{ fromJSON(needs.load-data-plugins-config.outputs.json_content)['data_plugins'] != '[]' }}
+    if: ${{ inputs.build-data-plugins == true }}
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Trigger plugin build workflow
-        if: ${{ inputs.build-data-plugins == true }}
         uses: the-actions-org/workflow-dispatch@v4
         with:
           workflow: build.yml

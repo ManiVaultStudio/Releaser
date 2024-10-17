@@ -164,11 +164,11 @@ jobs:
 #          # Load JSON from file
 #          json_content=$(cat ./config/${{ inputs.version }}.json)
 
-          # Extract part of the JSON using jq
-          extracted_json=$(echo "$json_content" | jq '.installer_config')
+#          # Extract part of the JSON using jq
+#          extracted_json=$(echo "$json_content" | jq '.installer_config')
 
-          # Convert extracted JSON to a string and save it to an output
-          echo "extracted_json_str=$(echo "$extracted_json" | jq -c .)" >> $GITHUB_ENV
+#          # Convert extracted JSON to a string and save it to an output
+#          echo "extracted_json_str=$(echo "$extracted_json" | jq -c .)" >> $GITHUB_ENV
 #
 #      - name: Use extracted JSON string
 #        run: |

@@ -63,6 +63,23 @@ jobs:
       - name: Debug data plugins JSON content
         id: debug-data-plugins-json-content
         run: echo $data_plugins
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.extract-data-plugins-matrix.outputs.data-plugins-matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Load matrix from JSON
+        id: extract-data-plugins-matrix
+        run: |
+          # Read the jobs from the JSON file
+          data-plugins-matrix=$(jq '.plugins' config/test.json)
+
+          # Set the matrix output
+          echo "data-plugins-matrix=$data-plugins-matrix" >> $GITHUB_OUTPUT
+          
   #build-data-plugins:
   #  runs-on: ubuntu-latest
   #  needs: load-data-plugins-config
@@ -85,22 +102,22 @@ jobs:
   #        display-workflow-run-url: true
   #        workflow-logs: print
   #        inputs: '{ "forceMacBuild": true }'
-  load-plugins-config:
-    name: Load plugins config
-    runs-on: ubuntu-latest
-    needs: load-data-plugins-config
-    continue-on-error: true
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Load plugins array from JSON
-        id: extract-plugins
-        run: |
-          plugins=$(jq '.plugins' config/test.json)
-          echo "plugins=$plugins" >> $GITHUB_OUTPUT
-      - name: Debug plugins JSON content
-        id: debug-plugins-json-content
-        run: echo $plugins
+#  load-plugins-config:
+#    name: Load plugins config
+#    runs-on: ubuntu-latest
+#    needs: load-data-plugins-config
+#    continue-on-error: true
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#      - name: Load plugins array from JSON
+#        id: extract-plugins
+#        run: |
+#          plugins=$(jq '.plugins' config/test.json)
+#          echo "plugins=$plugins" >> $GITHUB_OUTPUT
+#      - name: Debug plugins JSON content
+#        id: debug-plugins-json-content
+#        run: echo $plugins
 #  build-plugins:
 #    runs-on: ubuntu-latest
 #    needs: load-plugins-config

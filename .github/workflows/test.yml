@@ -64,5 +64,5 @@ jobs:
           echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
       - name: Debug plugins JSON content
         id: debug-plugins-json-content
-        run: echo $GITHUB_OUTPUT
+        run: echo hello $GITHUB_OUTPUT
     

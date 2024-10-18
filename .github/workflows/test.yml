@@ -60,8 +60,8 @@ jobs:
       - name: Load data plugins matrix from JSON
         id: extract-data-plugins-matrix
         run: |
-          data_plugins=$(jq -c '.data_plugins' config/test.json)
-          echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
+          matrix=$(jq -c '.data_plugins' config/test.json)
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
   print-data-plugins-matrix:
     name: Print data plugins matrix
     runs-on: ubuntu-latest

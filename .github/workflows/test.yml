@@ -48,7 +48,7 @@ jobs:
           display-workflow-run-url: true
           workflow-logs: print
   load-data-plugins-matrix:
-    name: Load data plugins config
+    name: Load data plugins matrix
     runs-on: ubuntu-latest
     needs: build-core
     continue-on-error: true
@@ -60,10 +60,10 @@ jobs:
       - name: Load data plugins matrix from JSON
         id: extract-data-plugins-matrix
         run: |
-          plugins=$(jq -c '.data_plugins' config/test.json)
+          data_plugins=$(jq -c '.data_plugins' config/test.json)
           echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
   print-data-plugins-matrix:
-    name: Print data plugins config
+    name: Print data plugins matrix
     runs-on: ubuntu-latest
     needs: load-data-plugins-matrix
     continue-on-error: true

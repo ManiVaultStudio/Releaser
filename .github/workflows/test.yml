@@ -97,7 +97,7 @@ jobs:
     name: Print plugins matrix
     runs-on: ubuntu-latest
     needs: load-plugins-matrix
-    if: ${{ needs.load-plugins-matrix.outputs.matrix != '[]' }}
+    if: ${{ always() && needs.load-plugins-matrix.outputs.matrix != '[]' }}
     continue-on-error: true
     outputs:
       matrix: ${{ steps.load-plugins-matrix.outputs.matrix }}

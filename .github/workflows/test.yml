@@ -75,4 +75,32 @@ jobs:
       - name: Print the data plugins matrix output
         run: |
           echo "Data plugins matrix output: ${{ needs.load-data-plugins-matrix.outputs.matrix }}"
+  load-plugins-matrix:
+    name: Load plugins matrix
+    runs-on: ubuntu-latest
+    needs: print-data-plugins-matrix
+    continue-on-error: true
+    outputs:
+      matrix: ${{ steps.extract-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Load plugins matrix from JSON
+        id: extract-matrix
+        run: |
+          matrix=$(jq -c '.plugins' config/test.json)
+          echo "Extracted matrix: $matrix"
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+  print-plugins-matrix:
+    name: Print plugins matrix
+    runs-on: ubuntu-latest
+    needs: load-plugins-matrix
+    if: ${{ needs.load-plugins-matrix.outputs.matrix != '[]' }}
+    continue-on-error: true
+    outputs:
+      matrix: ${{ steps.load-plugins-matrix.outputs.matrix }}
+    steps:
+      - name: Print the plugins matrix output
+        run: |
+          echo "Plugins matrix output: ${{ needs.load-plugins-matrix.outputs.matrix }}"
     

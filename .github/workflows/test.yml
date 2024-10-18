@@ -56,11 +56,12 @@ jobs:
       matrix: ${{ steps.extract-matrix.outputs.matrix }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Load data plugins matrix from JSON
         id: extract-matrix
         run: |
           matrix=$(jq -c '.data_plugins' config/test.json)
+          echo "Extracted matrix: $matrix"
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
   print-data-plugins-matrix:
     name: Print data plugins matrix

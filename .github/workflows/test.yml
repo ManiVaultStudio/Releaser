@@ -53,16 +53,16 @@ jobs:
     needs: build-core
     continue-on-error: true
     outputs:
-      matrix: ${{ steps.extract-matrix.outputs.matrix }}
+      matrix: ${{ steps.extract-data-plugins-matrix.outputs.matrix }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Load plugins matrix from JSON
-        id: extract-plugins-matrix
+      - name: Load data plugins matrix from JSON
+        id: extract-data-plugins-matrix
         run: |
-          plugins=$(jq -c '.plugins' config/test.json)
-          echo "plugins=$plugins" >> $GITHUB_OUTPUT
+          plugins=$(jq -c '.data_plugins' config/test.json)
+          echo "data_plugins=$data_plugins" >> $GITHUB_OUTPUT
       - name: Debug plugins JSON content
         id: debug-plugins-json-content
-        run: echo $plugins
+        run: echo $GITHUB_OUTPUT
     

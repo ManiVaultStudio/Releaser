@@ -67,7 +67,7 @@ jobs:
     name: Print data plugins matrix
     runs-on: ubuntu-latest
     needs: load-data-plugins-matrix
-    if: ${{ needs.load-data-plugins-matrix.outputs.matrix }} != []
+    if: needs.load-data-plugins-matrix.outputs.matrix != []
     continue-on-error: true
     outputs:
       matrix: ${{ steps.load-data-plugins-matrix.outputs.matrix }}

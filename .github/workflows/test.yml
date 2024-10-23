@@ -72,7 +72,7 @@ jobs:
     name: Print data plugins matrix
     runs-on: ubuntu-latest
     needs: load-data-plugins-matrix
-    if: ${{ inputs.verbose == true && needs.load-data-plugins-matrix.outputs.matrix != '[]' }}
+    if: ${{ always() && inputs.verbose == true && needs.load-data-plugins-matrix.outputs.matrix != '[]' }}
     continue-on-error: true
     outputs:
       matrix: ${{ steps.load-data-plugins-matrix.outputs.matrix }}
@@ -83,10 +83,11 @@ jobs:
   build-data-plugins:
     runs-on: ubuntu-latest
     needs: load-data-plugins-matrix
+    if: ${{ always() && inputs.build-data-plugins == true }}
+    continue-on-error: true
     strategy:
         matrix:
           repo: ${{ fromJSON(needs.load-data-plugins-matrix.matrix) }}
-    continue-on-error: true
     name: Build - ${{ matrix.repo.name }}
     steps:
       - name: Trigger data plugin build workflow

@@ -193,19 +193,16 @@ jobs:
           os="${{ inputs.os }}"
           version="${{ steps.extract-version.outputs.version }}"
           application_name="${{ steps.extract-application-name.outputs.application_name }}"
-          
           installer_config_json=$(jq -n \
             --arg os "$os" \
             --arg version "$version" \
             --arg application_name "$application_name" \
             '{ os: $os, version: $version, application_name: $application_name }')
-          
           echo "Installer config JSON: $installer_config_json"
-          echo "installer_config_json=$installer_config_json" >> $GITHUB_ENV
           echo "installer_config_json=$installer_config_json" >> $GITHUB_OUTPUT
       - name: Print the installer config
         run: |
-          echo "Combined JSON: ${{ env.json_output }}"
+          echo "Combined JSON: ${{ steps.generate-installer-config-json.outputs.installer_config_json }}"
   print-installer-config:
     name: Print installer configuration
     runs-on: ubuntu-latest

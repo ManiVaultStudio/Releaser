@@ -38,6 +38,7 @@ jobs:
   build-core:
     name: Build core
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Trigger core build workflow
         uses: the-actions-org/workflow-dispatch@v4
@@ -92,7 +93,6 @@ jobs:
     steps:
       - name: Trigger data plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
-        if: ${{ inputs.build-data-plugins == true }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

@@ -30,6 +30,10 @@ on:
         type: boolean
         description: Build installer
         default: false
+      verbose:
+        type: boolean
+        description: Verbose
+        default: true
 jobs:
   build-core:
     name: Build core
@@ -68,7 +72,7 @@ jobs:
     name: Print data plugins matrix
     runs-on: ubuntu-latest
     needs: load-data-plugins-matrix
-    if: ${{ needs.load-data-plugins-matrix.outputs.matrix != '[]' }}
+    if: ${{ inputs.verbose == true && needs.load-data-plugins-matrix.outputs.matrix != '[]' }}
     continue-on-error: true
     outputs:
       matrix: ${{ steps.load-data-plugins-matrix.outputs.matrix }}
@@ -76,6 +80,28 @@ jobs:
       - name: Print the data plugins matrix output
         run: |
           echo "Data plugins matrix output: ${{ needs.load-data-plugins-matrix.outputs.matrix }}"
+  build-data-plugins:
+    runs-on: ubuntu-latest
+    needs: load-data-plugins-matrix
+    strategy:
+        matrix:
+          repo: ${{ fromJSON(needs.load-data-plugins-matrix.matrix) }}
+    continue-on-error: true
+    name: Build - ${{ matrix.repo.name }}
+    steps:
+      - name: Trigger data plugin build workflow
+        uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.build-data-plugins == true }}
+        with:
+          workflow: build.yml
+          repo: ManiVaultStudio/${{ matrix.repo.name }}
+          ref: ${{ matrix.repo.branch }}
+          token: ${{ secrets.PA_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout: 2h
+          display-workflow-run-url: true
+          workflow-logs: print
+          inputs: '{ "forceMacBuild": true }'
   load-plugins-matrix:
     name: Load plugins matrix
     runs-on: ubuntu-latest

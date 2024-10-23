@@ -154,3 +154,42 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
+  load-installer-config:
+    name: Load installer configuration from JSON
+    runs-on: ubuntu-latest
+    needs: build-plugins
+    if: ${{ always() && inputs.build-installer == true }}
+    continue-on-error: true
+    outputs:
+      version: ${{ steps.extract-version.outputs.version }}
+      application_name: ${{ steps.extract-application-name.outputs.application-name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Load installer version from JSON
+        id: extract-version
+        run: |
+          version=$(jq -c '.installer_config.version' config/test.json)
+          echo "Extracted installer version: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
+      - name: Load installer application name from JSON
+        id: extract-application-name
+        run: |
+          application_name=$(jq -c '.installer_config.application_name' config/test.json)
+          echo "Extracted installer application name: $application_name"
+          echo "application_name=$application_name" >> $GITHUB_OUTPUT
+  print-installer-config:
+    name: Print installer configuration
+    runs-on: ubuntu-latest
+    needs: load-installer-config
+    if: ${{ always() && inputs.verbose == true && needs.load-installer-config.outputs.version != ''  && needs.load-installer-config.outputs.application_name != '' }}
+    continue-on-error: true
+    steps:
+      - name: Print the installer version
+        id: print-installer-version
+        run: |
+          echo "Installer version: ${{ needs.load-installer-config.outputs.version }}"
+      - name: Print the installer application name
+        id: print-installer-application-name
+        run: |
+          echo "Installer application name: ${{ needs.load-installer-config.outputs.application_name }}"

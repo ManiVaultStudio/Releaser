@@ -55,7 +55,7 @@ jobs:
     name: Load data plugins matrix
     runs-on: ubuntu-latest
     needs: build-core
-    if: ${{ inputs.build-data-plugins == true }}
+    if: ${{ always() && inputs.build-data-plugins == true }}
     continue-on-error: true
     outputs:
       matrix: ${{ steps.extract-matrix.outputs.matrix }}

@@ -3,6 +3,14 @@ name: Test releaser
 on:
   workflow_dispatch:
     inputs:
+      os:
+        description: 'Operating system'
+        required: true
+        default: 'Windows'
+        type: choice
+        options:
+        - Windows
+        - Macos
       version:
         description: 'Application name'
         required: true
@@ -158,11 +166,12 @@ jobs:
     name: Load installer configuration from JSON
     runs-on: ubuntu-latest
     needs: build-plugins
-    if: ${{ always() && inputs.build-installer == true }}
+    if: ${{ always() }}
     continue-on-error: true
     outputs:
       version: ${{ steps.extract-version.outputs.version }}
       application_name: ${{ steps.extract-application-name.outputs.application_name }}
+      installer_config_json: ${{ steps.generate-installer-config-json.outputs.installer_config_json }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -178,6 +187,25 @@ jobs:
           application_name=$(jq -c '.installer_config.application_name' config/test.json)
           echo "Extracted installer application name: $application_name"
           echo "application_name=$application_name" >> $GITHUB_OUTPUT
+      - name: Generate installer config JSON
+        id: generate-installer-config-json
+        run: |
+          os="${{ inputs.os }}"
+          version="${{ steps.extract-version.outputs.version }}"
+          application_name="${{ steps.extract-application-name.outputs.application_name }}"
+          
+          installer_config_json=$(jq -n \
+            --arg os "$os" \
+            --arg version "$version" \
+            --arg application_name "$application_name" \
+            '{ os: $os, version: $version, application_name: $application_name }')
+          
+          echo "Installer config JSON: $installer_config_json"
+          echo "installer_config_json=$installer_config_json" >> $GITHUB_ENV
+          echo "installer_config_json=$installer_config_json" >> $GITHUB_OUTPUT
+      - name: Print the installer config
+        run: |
+          echo "Combined JSON: ${{ env.json_output }}"
   print-installer-config:
     name: Print installer configuration
     runs-on: ubuntu-latest
@@ -185,11 +213,27 @@ jobs:
     if: ${{ always() && inputs.verbose == true && needs.load-installer-config.outputs.version != '' && needs.load-installer-config.outputs.application_name != '' }}
     continue-on-error: true
     steps:
-      - name: Print the installer version
-        id: print-installer-version
+      - name: Print the installer configuration
+        id: print-installer-configuration
         run: |
-          echo "Installer version: ${{ needs.load-installer-config.outputs.version }}"
-      - name: Print the installer application name
-        id: print-installer-application-name
-        run: |
-          echo "Installer application name: ${{ needs.load-installer-config.outputs.application_name }}"
+          echo "Installer configuration: ${{ needs.load-installer-config.outputs.installer_config_json }}"
+  build-installer:
+    runs-on: ubuntu-latest
+    needs: load-installer-config
+    if: ${{ always() && inputs.build-installer == true }}
+    continue-on-error: true
+    name: Build installer
+    steps:
+      - name: Trigger installer build
+        uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ inputs.build-installer == true }}
+        with:
+          workflow: manual.yml
+          repo: ManiVaultStudio/Installer
+          ref: main
+          token: ${{ secrets.PA_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout: 2h
+          display-workflow-run-url: true
+          workflow-logs: print
+          inputs: ${{ steps.extract_json.extracted_json_str }}

@@ -93,6 +93,7 @@ jobs:
     steps:
       - name: Trigger data plugin build workflow
         uses: the-actions-org/workflow-dispatch@v4
+        if: ${{ needs.load-data-plugins-matrix.outputs.matrix != '[]' }}
         with:
           workflow: build.yml
           repo: ManiVaultStudio/${{ matrix.repo.name }}

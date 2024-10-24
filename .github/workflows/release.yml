@@ -163,7 +163,7 @@ jobs:
           display-workflow-run-url: true
           workflow-logs: print
   load-installer-config:
-    name: Load installer configuration from JSON
+    name: Load installer configuration
     runs-on: ubuntu-latest
     needs: build-plugins
     if: ${{ always() }}

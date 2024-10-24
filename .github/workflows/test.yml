@@ -233,4 +233,4 @@ jobs:
           wait-for-completion-timeout: 2h
           display-workflow-run-url: true
           workflow-logs: print
-          inputs: ${{ steps.extract_json.extracted_json_str }}
+          inputs: ${{ needs.load-installer-config.outputs.installer_config_json }}

@@ -1,4 +1,4 @@
-name: Releas ManiVault
+name: Release ManiVault
 
 on:
   workflow_dispatch:

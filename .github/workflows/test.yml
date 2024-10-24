@@ -74,7 +74,7 @@ jobs:
       - name: Load data plugins matrix from JSON
         id: extract-matrix
         run: |
-          matrix=$(jq -c '.data_plugins' config/test.json)
+          matrix=$(jq -c '.data_plugins' config/${{ inputs.version }}.json)
           echo "Extracted matrix: $matrix"
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
   print-data-plugins-matrix:
@@ -126,7 +126,7 @@ jobs:
       - name: Load plugins matrix from JSON
         id: extract-matrix
         run: |
-          matrix=$(jq -c '.plugins' config/test.json)
+          matrix=$(jq -c '.plugins' config/${{ inputs.version }}.json)
           echo "Extracted matrix: $matrix"
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
   print-plugins-matrix:
@@ -178,13 +178,13 @@ jobs:
       - name: Load installer version from JSON
         id: extract-version
         run: |
-          version=$(jq -c '.installer_config.version' config/test.json)
+          version=$(jq -c '.installer_config.version' config/${{ inputs.version }}.json)
           echo "Extracted installer version: $version"
           echo "version=$version" >> $GITHUB_OUTPUT
       - name: Load installer application name from JSON
         id: extract-application-name
         run: |
-          application_name=$(jq -c '.installer_config.application_name' config/test.json)
+          application_name=$(jq -c '.installer_config.application_name' config/${{ inputs.version }}.json)
           echo "Extracted installer application name: $application_name"
           echo "application_name=$application_name" >> $GITHUB_OUTPUT
       - name: Generate installer config JSON

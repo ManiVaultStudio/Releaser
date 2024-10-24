@@ -1,4 +1,4 @@
-name: Test releaser
+name: Releas ManiVault
 
 on:
   workflow_dispatch:

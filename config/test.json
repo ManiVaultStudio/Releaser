@@ -1,6 +1,5 @@
 {
     "installer_config": {
-        "os": "Windows",
         "version": "test",
         "application_name": "ManiVault"
     },

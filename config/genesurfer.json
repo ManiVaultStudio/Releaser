@@ -1,8 +1,18 @@
-[
-    { "name": "t-SNE-Analysis", "branch": "release/core_genesurfer/genesurfer_1.0" },
-    { "name": "HDF5Loader", "branch": "release/core_genesurfer/genesurfer_1.0" },
-    { "name": "GeneSurfer", "branch": "release/core_genesurfer/genesurfer_0.1" },
-    { "name": "Scatterplot", "branch": "release/core_genesurfer/genesurfer_1.0" },
-    { "name": "SpaceWalker", "branch": "release/core_genesurfer/genesurfer_1.0" },
-    { "name": "VolumeViewerPlugin", "branch": "release/core_genesurfer/genesurfer_0.1" }
-]
+{
+    "installer_config": {
+        "version": "genesurfer",
+        "application_name": "ManiVault"
+    },
+    "data_plugins": [
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_comparison_viewer/comparison_viewer_1.1" }
+    ],
+    "plugins": [
+        { "name": "t-SNE-Analysis", "branch": "release/core_genesurfer/genesurfer_1.0" },
+        { "name": "HDF5Loader", "branch": "release/core_genesurfer/genesurfer_1.0" },
+        { "name": "GeneSurfer", "branch": "release/core_genesurfer/genesurfer_0.1" },
+        { "name": "Scatterplot", "branch": "release/core_genesurfer/genesurfer_1.0" },
+        { "name": "SpaceWalker", "branch": "release/core_genesurfer/genesurfer_1.0" },
+        { "name": "VolumeViewerPlugin", "branch": "release/core_genesurfer/genesurfer_0.1" }
+    ]
+}

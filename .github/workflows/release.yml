@@ -24,6 +24,7 @@ on:
         - genesurfer
         - test
         - comparison_viewer
+        - patchseq_2025_apr
       build-core:
         type: boolean
         default: false

@@ -1,0 +1,10 @@
+{
+    "installer_config": {
+        "version": "patchseq_2025_apr",
+        "application_name": "patchseq_2025_apr"
+    },
+    "data_plugins": [
+    ],
+    "plugins": [
+    ]
+}

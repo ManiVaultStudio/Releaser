@@ -1,0 +1,24 @@
+{
+    "installer_config": {
+        "version": "cytosplore_viewer",
+        "application_name": "Cytosplore Viewer"
+    },
+    "data_plugins": [
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_1.3/cytosploreviewer" }
+    ],
+    "plugins": [
+        { "name": "Scatterplot", "branch": "release/core_1.3/cytosploreviewer" }.
+        { "name": "t-SNE-Analysis", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "SimianViewerPairExpCompPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "SimianViewerMultExpCompPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "SimianViewerPlugin", "branch": "release/core_1.3/cytosploreviewer" },
+        { "name": "ChartLegendViewPlugin", "branch": "release/core_1.3/cytosploreviewer" }
+    ]
+}

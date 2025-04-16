@@ -25,6 +25,7 @@ on:
         - test
         - comparison_viewer
         - patchseq_2025_apr
+        - cytosplore_viewer
       build-core:
         type: boolean
         default: false

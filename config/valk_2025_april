@@ -1,0 +1,22 @@
+{
+    "installer_config": {
+        "version": "valk_2025_april",
+        "application_name": "Valk 2025 April"
+    },
+    "data_plugins": [
+    ],
+    "plugins": [
+      { "name": "Scatterplot", "branch": "release/core_1.3/0.7" },
+      { "name": "ImageLoaderPlugin", "branch": "release/core_1.3/0.6" },
+      { "name": "ImageViewerPlugin", "branch": "release/core_1.3/0.7" },
+      { "name": "t-SNE-Analysis", "branch": "release/core_1.3/0.7" },
+      { "name": "ClusterMeansPlugin", "branch": "release/core_1.3/1.3" },
+      { "name": "JupyterPlugin", "branch": "release/core_1.3/0.3" },
+      { "name": "ClustersFromPointsPlugin", "branch": "release/core_1.3/1.1" },
+      { "name": "MeanShiftClustering", "branch": "release/core_1.3/0.7" },
+      { "name": "HeatMap", "branch": "release/core_1.3/SerializationFeature" },
+      { "name": "CombineDataPlugin", "branch": "release/core_1.3/1.0" },
+      { "name": "UMAP-Plugin", "branch": "release/core_1.3/1.1.1" },
+      { "name": "PcaPlugin", "branch": "release/core_1.3/0.5" }
+    ]
+}

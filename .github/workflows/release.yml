@@ -26,6 +26,7 @@ on:
         - comparison_viewer
         - patchseq_2025_apr
         - cytosplore_viewer
+        - valk_2025_april
       build-core:
         type: boolean
         default: false

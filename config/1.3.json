@@ -25,6 +25,7 @@
         { "name": "Scatterplot", "branch": "release/core_1.3/0.7" },
         { "name": "SpectralViewPlugin", "branch": "release/core_1.3/0.5" },
         { "name": "ImageTransformationPlugin", "branch": "release/core_1.3/1.2" },
-        { "name": "ClusterMeansPlugin", "branch": "release/core_1.3/1.3" }
+        { "name": "ClusterMeansPlugin", "branch": "release/core_1.3/1.3" },
+        { "name": "ClusterIO", "branch": "release/core_1.3/1.1" }
     ]
 }

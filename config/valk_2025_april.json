@@ -17,6 +17,7 @@
       { "name": "HeatMap", "branch": "release/core_1.3/SerializationFeature" },
       { "name": "CombineDataPlugin", "branch": "release/core_1.3/1.0" },
       { "name": "UMAP-Plugin", "branch": "release/core_1.3/1.1.1" },
-      { "name": "PcaPlugin", "branch": "release/core_1.3/0.5" }
+      { "name": "PcaPlugin", "branch": "release/core_1.3/0.5" },
+      { "name": "PointDataConversionPlugin", "branch": "release/core_1.3/0.5" }
     ]
 }

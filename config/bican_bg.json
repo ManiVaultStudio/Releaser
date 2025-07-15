@@ -1,0 +1,12 @@
+{
+    "installer_config": {
+        "version": "bican_bg",
+        "application_name": "Cytosplore 2025"
+    },
+    "data_plugins": [
+    ],
+    "plugins": [
+      { "name": "Scatterplot", "branch": "release/core_bican_bg/bican_bg" },
+      { "name": "t-SNE-Analysis", "branch": "release/core_bican_bg/bican_bg" }
+    ]
+}

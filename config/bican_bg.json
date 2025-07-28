@@ -23,6 +23,6 @@
         { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "DualViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "DualAnalysisPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DualAnalysisPlugin", "branch": "release/core_bican_bg/bican_bg" }
     ]
 }

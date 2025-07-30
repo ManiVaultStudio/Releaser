@@ -11,7 +11,6 @@
         { "name": "Scatterplot", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "HDF5Loader", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "t-SNE-Analysis", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "t-SNE-Analysis", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "pcaplugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "differentialexpressionplugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "refineplugin", "branch": "release/core_bican_bg/bican_bg" },

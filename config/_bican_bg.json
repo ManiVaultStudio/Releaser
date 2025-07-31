@@ -1,0 +1,27 @@
+{
+    "installer_config": {
+        "version": "bican_bg",
+        "application_name": "Cytosplore 2025"
+    },
+    "data_plugins": [
+        { "name": "CellMorphologyData", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "EphysData", "branch": "release/core_bican_bg/bican_bg" }
+    ],
+    "plugins": [
+        { "name": "Scatterplot", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "HDF5Loader", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "t-SNE-Analysis", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "pcaplugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "differentialexpressionplugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "refineplugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "MEView", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ProjectionExplorer", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DimensionPlot", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "LinePlotViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "LayerSurfer", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DualViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DualAnalysisPlugin", "branch": "release/core_bican_bg/bican_bg" }
+    ]
+}

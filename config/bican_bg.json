@@ -16,6 +16,6 @@
         { "name": "ProjectionExplorer", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "DimensionPlot", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "LinePlotViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "LayerSurfer", "branch": "release/core_bican_bg/bican_bg" }
+        { "name": "GradientSurferPlugin", "branch": "release/core_bican_bg/bican_bg" }
     ]
 }

@@ -12,10 +12,13 @@
         { "name": "HDF5Loader", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "t-SNE-Analysis", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "pcaplugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ExtCsvLoader", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "MEView", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "ProjectionExplorer", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "DimensionPlot", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "LinePlotViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "GradientSurferPlugin", "branch": "release/core_bican_bg/bican_bg" }
+        { "name": "GradientSurferPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "GradientSurferTransformationPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "SubsetFromSelectionPlugin", "branch": "release/core_bican_bg/bican_bg" }
     ]
 }

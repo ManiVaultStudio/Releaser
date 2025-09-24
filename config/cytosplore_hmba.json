@@ -1,6 +1,6 @@
 {
     "installer_config": {
-        "version": "bican_bg",
+        "version": "cytosplore_hmba",
         "application_name": "Cytosplore 2025"
     },
     "data_plugins": [
@@ -23,9 +23,27 @@
         { "name": "MEView", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "ProjectionExplorer", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "DimensionPlot", "branch": "release/core_bican_bg/bican_bg" },
+        
         { "name": "LinePlotViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "GradientSurferPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "GradientSurferTransformationPlugin", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "SubsetFromSelectionPlugin", "branch": "release/core_bican_bg/bican_bg" }
+        { "name": "SubsetFromSelectionPlugin", "branch": "release/core_bican_bg/bican_bg" },
+
+        { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ATACControllerPlugin", "branch": "release/core_bican_bg/bican_bg" },
+
+        { "name": "ChartLegendViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "SimianViewerPairExpCompPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "SimianViewerMultExpCompPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "SimianViewerPlugin", "branch": "release/core_bican_bg/bican_bg" },
+
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonLoaderPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonGeneDetectPlugin", "branch": "release/core_bican_bg/bican_bg" }
     ]
 }

@@ -27,7 +27,7 @@ on:
         - patchseq_2025_apr
         - cytosplore_viewer
         - valk_2025_april
-        - bican_bg
+        - cytosplore_hmba
       build-core:
         type: boolean
         default: false

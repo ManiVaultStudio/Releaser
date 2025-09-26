@@ -5,7 +5,9 @@
     },
     "data_plugins": [
         { "name": "CellMorphologyData", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "EphysData", "branch": "release/core_bican_bg/bican_bg" }
+        { "name": "EphysData", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_bican_bg/bican_bg" }
     ],
     "plugins": [
         { "name": "Scatterplot", "branch": "release/core_bican_bg/bican_bg" },
@@ -39,8 +41,6 @@
         { "name": "SimianViewerMultExpCompPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "SimianViewerPlugin", "branch": "release/core_bican_bg/bican_bg" },
 
-        { "name": "CrossSpeciesComparisonTreeData", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "CrossSpeciesComparisonTreeMetaData", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "CrossSpeciesComparisonPhyTVuPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "CrossSpeciesComparisonLoaderPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "CrossSpeciesComparisonClusterRankPlugin", "branch": "release/core_bican_bg/bican_bg" },

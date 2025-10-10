@@ -17,6 +17,7 @@
         { "name": "ExtCsvLoader", "branch": "release/core_bican_bg/bican_bg" },
 
         { "name": "DifferentialExpressionPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DE-MultiSpecies", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "RefinePlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "SunburstClusterPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "Umap-Plugin", "branch": "release/core_bican_bg/bican_bg" },

@@ -35,7 +35,8 @@
         { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "ATACControllerPlugin", "branch": "release/core_bican_bg/bican_bg" },
-
+        { "name": "AtacViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        
         { "name": "ChartLegendViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "SimianViewerPairExpCompPlugin", "branch": "release/core_bican_bg/bican_bg" },

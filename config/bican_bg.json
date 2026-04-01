@@ -31,11 +31,13 @@
         { "name": "GradientSurferPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "GradientSurferTransformationPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "SubsetFromSelectionPlugin", "branch": "release/core_bican_bg/bican_bg" },
-
-        { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
-        { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
+        
         { "name": "ATACControllerPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "AtacViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DualAnalysisPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "DualViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "GeneSurfer", "branch": "release/core_bican_bg/bican_bg" },
+        { "name": "ProjectAveragesPlugin", "branch": "release/core_bican_bg/bican_bg" },
         
         { "name": "ChartLegendViewPlugin", "branch": "release/core_bican_bg/bican_bg" },
         { "name": "ClusterDifferentialExpressionPlugin", "branch": "release/core_bican_bg/bican_bg" },
